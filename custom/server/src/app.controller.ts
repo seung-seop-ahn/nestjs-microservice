@@ -1,12 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @MessagePattern({ cmd: 'echo' })
+  echo(data: string) {
+    console.log('Server Custom Transport echo: ', data);
+  }
+
+  @MessagePattern({ cmd: 'add' })
+  add(data: { a: number; b: number }) {
+    console.log('Server Custom Transport Requested');
+    return this.appService.add(data);
   }
 }
