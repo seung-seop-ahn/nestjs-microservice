@@ -31,6 +31,10 @@ $ cd {{custom/redis/grpc}}
 $ make dev
 ```
 
+## Reference
+
+- [NestJS Official Document](https://docs.nestjs.com/microservices/basics)
+
 ## Author
 
 👤 **Kevin Ahn**
